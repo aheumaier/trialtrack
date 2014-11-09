@@ -25,14 +25,14 @@
   </div>
   <div class="field">
     <%= f.label :role %><br>
-    <%= collection_select(:role, :role_id, Role.find(:all), :id, :name)  %>
+    <%= collection_select(:user, :role_id, @roles, :id, :name)  %>
   </div>
     <%= f.fields_for @user.address do |builder| %>
     <%= render :partial => 'addresses/address_fields', :locals => {:f => builder} %>
     <% end %>
   <div class="field">
     <%= f.label :organization %><br>
-    <%= collection_select(:organization, :organization_id, Role.find(:all), :id, :name)  %>
+    <%= collection_select(:user, :organization_id, @roles, :id, :name)  %>
   </div>
   <div class="actions">
     <%= f.submit %>
