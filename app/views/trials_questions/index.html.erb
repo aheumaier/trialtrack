@@ -1,0 +1,31 @@
+<h1>Listing trials_questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Question</th>
+      <th>Trial</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trials_questions.each do |trials_question| %>
+      <tr>
+        <td><%= trials_question.id %></td>
+        <td><%= trials_question.question %></td>
+        <td><%= trials_question.trial %></td>
+        <td><%= link_to 'Show', trials_question %></td>
+        <td><%= link_to 'Edit', edit_trials_question_path(trials_question) %></td>
+        <td><%= link_to 'Destroy', trials_question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trials question', new_trials_question_path %>

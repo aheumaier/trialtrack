@@ -1,0 +1,35 @@
+<h1>Listing trials_users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>User</th>
+      <th>Trial</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trials_users.each do |trials_user| %>
+      <tr>
+        <td><%= trials_user.id %></td>
+        <td><%= trials_user.user %></td>
+        <td><%= trials_user.trial %></td>
+        <td><%= trials_user.start_date %></td>
+        <td><%= trials_user.end_date %></td>
+        <td><%= link_to 'Show', trials_user %></td>
+        <td><%= link_to 'Edit', edit_trials_user_path(trials_user) %></td>
+        <td><%= link_to 'Destroy', trials_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trials user', new_trials_user_path %>

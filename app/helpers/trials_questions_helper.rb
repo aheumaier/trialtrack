@@ -1,0 +1,2 @@
+module TrialsQuestionsHelper
+end

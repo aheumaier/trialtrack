@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @scalevalue.id %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @scalevalue.value %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @scalevalue.description %>
+</p>
+
+<%= link_to 'Edit', edit_scalevalue_path(@scalevalue) %> |
+<%= link_to 'Back', scalevalues_path %>

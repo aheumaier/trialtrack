@@ -1,0 +1,31 @@
+<h1>Listing scales_scalevalues</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Scalevalues</th>
+      <th>Scale</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scales_scalevalues.each do |scales_scalevalue| %>
+      <tr>
+        <td><%= scales_scalevalue.id %></td>
+        <td><%= scales_scalevalue.scalevalues %></td>
+        <td><%= scales_scalevalue.scale %></td>
+        <td><%= link_to 'Show', scales_scalevalue %></td>
+        <td><%= link_to 'Edit', edit_scales_scalevalue_path(scales_scalevalue) %></td>
+        <td><%= link_to 'Destroy', scales_scalevalue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Scales scalevalue', new_scales_scalevalue_path %>

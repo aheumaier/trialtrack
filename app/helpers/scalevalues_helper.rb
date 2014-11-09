@@ -1,0 +1,2 @@
+module ScalevaluesHelper
+end

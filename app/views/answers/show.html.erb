@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @answer.id %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @answer.question %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @answer.user %>
+</p>
+
+<p>
+  <strong>Due date:</strong>
+  <%= @answer.due_date %>
+</p>
+
+<p>
+  <strong>Answered at:</strong>
+  <%= @answer.answered_at %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @answer.value %>
+</p>
+
+<p>
+  <strong>Value text:</strong>
+  <%= @answer.value_text %>
+</p>
+
+<%= link_to 'Edit', edit_answer_path(@answer) %> |
+<%= link_to 'Back', answers_path %>
