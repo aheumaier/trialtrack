@@ -20,10 +20,24 @@
   <%= @user.role.name %>
 </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @user.address.id %>
-</p>
+<% unless @user.address.nil?  %>
+    <p>
+      <strong>Street:</strong>
+      <%= @user.address.street %>
+    </p>
+    <p>
+      <strong>City:</strong>
+      <%= @user.address.city%>
+    </p>
+    <p>
+      <strong>PLZ:</strong>
+      <%= @user.address.city_code %>
+    </p>
+    <p>
+      <strong>Country:</strong>
+      <%= @user.address.country %>
+    </p>
+<% end %>
 
 <p>
   <strong>Organization:</strong>
