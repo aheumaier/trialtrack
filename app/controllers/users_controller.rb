@@ -19,6 +19,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @roles = Role.all
+    @organizations = Organization.all
   end
 
   # POST /users
@@ -69,6 +71,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:id, :first_name, :last_name, :role_id, :address_id, :organization_id)
+      params.require(:user).permit(:id, :first_name, :last_name, :role_id, :organization_id, :email, address_params: [ :street, :city, :city_code, :country ])
     end
 end
