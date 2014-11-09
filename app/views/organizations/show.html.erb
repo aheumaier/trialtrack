@@ -2,13 +2,28 @@
 
 <p>
   <strong>Id:</strong>
-  <%= @organization.id %>
+  <%= @organization.name %>
 </p>
 
+<% unless @organization.address.nil?  %>
 <p>
-  <strong>Address:</strong>
-  <%= @organization.address %>
+  <strong>Street:</strong>
+  <%= @organization.address.street %>
 </p>
+<p>
+  <strong>City:</strong>
+  <%= @organization.address.city%>
+</p>
+<p>
+  <strong>PLZ:</strong>
+  <%= @organization.address.city_code %>
+</p>
+<p>
+  <strong>Country:</strong>
+  <%= @organization.address.country %>
+</p>
+<% end %>
+
 
 <%= link_to 'Edit', edit_organization_path(@organization) %> |
 <%= link_to 'Back', organizations_path %>
