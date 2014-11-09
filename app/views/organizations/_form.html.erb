@@ -12,13 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :id %><br>
-    <%= f.number_field :id %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
+
+   <%= f.fields_for @organization.address do |builder| %>
+   <%= render :partial => 'addresses/address_fields', :locals => {:f => builder} %>
+   <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

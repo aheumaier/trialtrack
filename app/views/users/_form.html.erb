@@ -28,11 +28,12 @@
   <div class="field">
     <%= f.label :role %><br>
     <%= collection_select(:user, :role_id, @roles, :id, :name)  %>
-
   </div>
+
     <%= f.fields_for @user.address do |builder| %>
     <%= render :partial => 'addresses/address_fields', :locals => {:f => builder} %>
     <% end %>
+
 
   <div class="field">
     <%= f.label :organization %><br>
