@@ -12,27 +12,31 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :id %><br>
-    <%= f.number_field :id %>
-  </div>
-  <div class="field">
     <%= f.label :first_name %><br>
     <%= f.text_field :first_name %>
   </div>
+
   <div class="field">
     <%= f.label :last_name %><br>
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
     <%= f.label :role %><br>
     <%= collection_select(:user, :role_id, @roles, :id, :name)  %>
+
   </div>
     <%= f.fields_for @user.address do |builder| %>
     <%= render :partial => 'addresses/address_fields', :locals => {:f => builder} %>
     <% end %>
+
   <div class="field">
     <%= f.label :organization %><br>
-    <%= collection_select(:user, :organization_id, @roles, :id, :name)  %>
+    <%= collection_select(:user, :organization_id, @organizations, :id, :name)  %>
   </div>
   <div class="actions">
     <%= f.submit %>
