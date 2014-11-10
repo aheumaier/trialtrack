@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20141109183548) do
     t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",           limit: 50
   end
 
   add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
