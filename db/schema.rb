@@ -11,13 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108201718) do
+ActiveRecord::Schema.define(version: 20141112202324) do
 
   create_table "addresses", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "addressable_id"
     t.string   "addressable_type"
+    t.string   "street",           limit: 50
+    t.string   "city",             limit: 50
+    t.integer  "city_code"
+    t.string   "country",          limit: 50
   end
 
   create_table "answers", force: true do |t|
@@ -95,6 +99,7 @@ ActiveRecord::Schema.define(version: 20141108201718) do
     t.string   "summary"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "organization_id"
   end
 
   create_table "trials_questions", force: true do |t|
@@ -126,6 +131,7 @@ ActiveRecord::Schema.define(version: 20141108201718) do
     t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",           limit: 50
   end
 
   add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
