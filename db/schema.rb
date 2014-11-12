@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20141112202324) do
 
+
   create_table "addresses", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"

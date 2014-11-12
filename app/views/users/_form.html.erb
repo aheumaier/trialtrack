@@ -30,7 +30,7 @@
     <%= collection_select(:user, :role_id, @roles, :id, :name)  %>
   </div>
 
-    <%= f.fields_for @user.address do |builder| %>
+    <%= f.fields_for :address do |builder| %>
     <%= render :partial => 'addresses/address_fields', :locals => {:f => builder} %>
     <% end %>
 
