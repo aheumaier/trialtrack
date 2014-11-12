@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.all.load
   end
 
   # GET /users/1
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @roles = Role.all
-    @organizations = Organization.all
+    @organizations = Organization.all.load
   end
 
   # POST /users

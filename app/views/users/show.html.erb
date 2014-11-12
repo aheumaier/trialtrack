@@ -46,7 +46,7 @@
 
 <p>
   <strong>Organization:</strong>
-  <%= @user.organization.nil? ? "" : @user.organization.name %>
+  <%= @user.organization.nil? ? "" : link_to( @user.organization.name, organization_path(@user.organization.id) ) %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

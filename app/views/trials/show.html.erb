@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Id:</strong>
-  <%= @trial.id %>
-</p>
-
-<p>
   <strong>Name:</strong>
   <%= @trial.name %>
 </p>
@@ -18,6 +13,11 @@
 <p>
   <strong>Summary:</strong>
   <%= @trial.summary %>
+</p>
+
+<p>
+  <strong>Organization:</strong>
+  <%= link_to @trial.organization.name, organization_path(@trial.organization.id) %>
 </p>
 
 <%= link_to 'Edit', edit_trial_path(@trial) %> |

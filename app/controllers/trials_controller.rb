@@ -15,10 +15,12 @@ class TrialsController < ApplicationController
   # GET /trials/new
   def new
     @trial = Trial.new
+    @organizations = Organization.all.load
   end
 
   # GET /trials/1/edit
   def edit
+    @organizations = Organization.all.load
   end
 
   # POST /trials
@@ -69,6 +71,6 @@ class TrialsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trial_params
-      params.require(:trial).permit(:id, :name, :description, :summary)
+      params.require(:trial).permit(:id, :name, :description, :summary, :organization_id)
     end
 end
