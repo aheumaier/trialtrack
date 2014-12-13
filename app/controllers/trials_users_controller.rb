@@ -15,6 +15,8 @@ class TrialsUsersController < ApplicationController
   # GET /trials_users/new
   def new
     @trials_user = TrialsUser.new
+    @users = User.all.load
+    @trials = Trial.order('created_at DESC').all
   end
 
   # GET /trials_users/1/edit

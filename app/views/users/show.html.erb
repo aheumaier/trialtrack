@@ -49,5 +49,11 @@
   <%= @user.organization.nil? ? "" : link_to( @user.organization.name, organization_path(@user.organization.id) ) %>
 </p>
 
+<p>
+  <strong>My Trials Participation:</strong><br>
+      <%= link_to  @user.trials_user.id , trial_path(@user.trials_user.trial_id) %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', users_path %> |
+<%= link_to 'add to trial', new_trials_user_path(@user.id) %>

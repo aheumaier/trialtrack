@@ -4,4 +4,9 @@ class User < ActiveRecord::Base
   belongs_to :organization
   has_one :trials_user
   accepts_nested_attributes_for :address, :trials_user
+
+
+  def full_name
+    self.first_name+' '+self.last_name
+  end
 end

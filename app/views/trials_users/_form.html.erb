@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :user %><br>
-    <%= f.text_field :user %>
+    <%= collection_select(:trials_user, :user_id, @users, :id, :full_name)  %>
   </div>
   <div class="field">
     <%= f.label :trial %><br>
-    <%= f.text_field :trial %>
+    <%= collection_select(:trials_user, :trial_id, @trials, :id, :name)  %>
   </div>
   <div class="field">
     <%= f.label :start_date %><br>
