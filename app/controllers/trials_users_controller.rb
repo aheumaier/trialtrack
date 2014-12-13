@@ -21,6 +21,8 @@ class TrialsUsersController < ApplicationController
 
   # GET /trials_users/1/edit
   def edit
+    @users = User.all
+    @trials = Trial.all
   end
 
   # POST /trials_users
@@ -71,6 +73,6 @@ class TrialsUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trials_user_params
-      params.require(:trials_user).permit(:id, :user_id, :trial_id, :start_date, :end_date)
+      params.require(:trials_user).permit(:id, :user_id, :trial_id, :start_date, :end_date )
     end
 end

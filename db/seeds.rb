@@ -31,6 +31,9 @@ User.create([{first_name: "Andreas", last_name: "Heumaier", role_id: roles[0].id
             {first_name: "Trial4", last_name: "User", role_id: roles[1].id, address: addresses[8], organization_id: nil},
 					  {first_name: "Trial5", last_name: "User", role_id: roles[1].id, address: addresses[9], organization_id: nil}]
 					)
+100.times do |count|
+  Question.create(:question => "How much is #{count}")
+end
 
 Trial.create([{name: "trial 1", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[1].id },
               {name: "trial 2", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[1].id},
@@ -43,3 +46,7 @@ Trial.create([{name: "trial 1", description: "This is a trials description which
 
 
 
+
+ 10.times do |trial|
+   Trial.create(:name => trial, :description => 'this is a longer trial description',:summary => 'This is a summary', :organization_id => organizations[1])
+ end
