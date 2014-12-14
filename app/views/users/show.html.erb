@@ -49,10 +49,10 @@
   <%= @user.organization.nil? ? "" : link_to( @user.organization.name, organization_path(@user.organization.id) ) %>
 </p>
 
-<% unless @user.trials_user.nil? %>
+<% unless @user.trials_users.empty? %>
 <p>
   <strong>My Trials Participation:</strong><br>
-      <%= link_to  Trial.find_by_id(@user.trials_user.id).name , trial_path(@user.trials_user.trial_id) %>
+      <%= link_to  Trial.find_by_id(@user.trials_users.id).name , trial_path(@user.trials_users.trial_id) %>
 </p>
 <% end %>
 
