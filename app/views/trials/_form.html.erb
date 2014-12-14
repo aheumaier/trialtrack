@@ -27,6 +27,18 @@
     <%= f.label :organization %><br>
     <%= collection_select(:trial, :organization_id, @organizations, :id, :name)  %>
   </div>
+
+  <div class="field">
+    <%= f.label :questions %><br>
+
+    <% for question in @questions %>
+        <div>
+          <%= check_box_tag "trial[question_ids][]", question.id, @my_questions.include?(question) %>
+          <%= question.question %>
+        </div>
+    <% end %>
+
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
