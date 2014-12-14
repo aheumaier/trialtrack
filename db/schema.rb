@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112202324) do
-
+ActiveRecord::Schema.define(version: 20141214140204) do
 
   create_table "addresses", force: true do |t|
     t.datetime "created_at"
@@ -63,6 +62,16 @@ ActiveRecord::Schema.define(version: 20141112202324) do
   add_index "questions", ["question_type_id"], name: "index_questions_on_question_type_id", using: :btree
   add_index "questions", ["scale_id"], name: "index_questions_on_scale_id", using: :btree
 
+  create_table "questions_trials", id: false, force: true do |t|
+    t.integer  "trial_id",    null: false
+    t.integer  "question_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questions_trials", ["question_id", "trial_id"], name: "index_questions_trials_on_question_id_and_trial_id", using: :btree
+  add_index "questions_trials", ["trial_id", "question_id"], name: "index_questions_trials_on_trial_id_and_question_id", using: :btree
+
   create_table "roles", force: true do |t|
     t.string   "name",       limit: 30
     t.datetime "created_at"
@@ -102,16 +111,6 @@ ActiveRecord::Schema.define(version: 20141112202324) do
     t.datetime "updated_at"
     t.string   "organization_id"
   end
-
-  create_table "trials_questions", force: true do |t|
-    t.integer  "question_id"
-    t.integer  "trial_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "trials_questions", ["question_id"], name: "index_trials_questions_on_question_id", using: :btree
-  add_index "trials_questions", ["trial_id"], name: "index_trials_questions_on_trial_id", using: :btree
 
   create_table "trials_users", force: true do |t|
     t.integer  "user_id"

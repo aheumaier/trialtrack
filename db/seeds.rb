@@ -42,11 +42,3 @@ Trial.create([{name: "trial 1", description: "This is a trials description which
               {name: "trial 5", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[1].id},
               {name: "trial 6", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[1].id},
               {name: "trial 7", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[1].id}])
-
-
-
-
-
- 10.times do |trial|
-   Trial.create(:name => trial, :description => 'this is a longer trial description',:summary => 'This is a summary', :organization_id => organizations[1])
- end
