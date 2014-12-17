@@ -25,15 +25,16 @@
     <%= f.label :role %><br>
     <%= collection_select(:user, :role_id, @roles, :id, :name)  %>
   </div>
+
+
   <%= f.fields_for :address do |builder| %>
-      <%= render :partial => 'addresses/address_fields', :locals => {:f => builder} %>
+      <%= render :partial => 'address_fields', :locals => {:f => builder} %>
   <% end %>
 
-
-    <div class="field">
-      <%= f.label :organization %><br>
-      <%= collection_select(:user, :organization_id, @organizations, :id, :name)  %>
-    </div>
+  <div class="field">
+    <%= f.label :organization %><br>
+    <%= collection_select(:user, :organization_id, @organizations, :id, :name)  %>
+  </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
