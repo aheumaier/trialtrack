@@ -1,29 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Medicore</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title><%= content_for?(:title) ? yield(:title) : "Medicore" %></title>
+
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "vendor/modernizr" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name"> <h1><a href="#">Medicore</a></h1> </li>
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li> </ul>
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <% if user_signed_in? -%>
+          <li class="active"><a href="<%= current_user.role.name.downcase %>">Dashboard</a></li>
+          <li class="has-dropdown"> <a href="#"><%= link_to current_user.full_name, "#" %></a>
+            <ul class="dropdown">
+              <li class="active"><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+            </ul>
+          </li>
+      <% end -%>
+    </ul>
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <% if user_signed_in? -%>
+          <li> <%= link_to current_user.role.name.downcase, "#" %> </li>
+      <% else -%>
+          <li><%= link_to('Login', new_user_session_path)  %> </li>
+      <% end -%>
+    </ul>
+  </section>
+</nav>
 <ul class="hmenu">
-
-<% if user_signed_in? %>
-    <p>
-      Logged In as  <%= current_user.full_name %> (<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>) <%= link_to "Dasboard", dashboard_superuser_path%>
-    </p>
-<% else %>
-    <li>
-      <%= link_to('Login', new_user_session_path)  %>
-    </li>
-<% end %>
 </ul>
+<div class="row">
+  <div class="large-3 columns">
+    <% if flash[:notice] %>
+        <div data-notice class="alert-box round">
+          <%= notice %>
+        </div>
+    <% end %>
+    <% if flash[:alert] %>
+        <div data-alert class="alert-box round">
+          <%= alert %>
+        </div>
+    <% end %>
+  </div>
+</div>
+</div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+<%= yield %>
 
-    <%= yield %>
-
+<%= javascript_include_tag "application" %>
 </body>
 </html>
