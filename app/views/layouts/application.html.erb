@@ -20,7 +20,7 @@
     <!-- Right Nav Section -->
     <ul class="right">
       <% if user_signed_in? -%>
-          <li class="active"><a href="<%= current_user.role.name.downcase %>">Dashboard</a></li>
+          <li class="active"><%= link_to "Dashboard", "/dashboard/"+current_user.role.name.downcase %></li>
           <li class="has-dropdown"> <a href="#"><%= link_to current_user.full_name, "#" %></a>
             <ul class="dropdown">
               <li class="active"><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
