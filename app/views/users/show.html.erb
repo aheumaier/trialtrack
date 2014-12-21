@@ -1,4 +1,9 @@
-<p id="notice"><%= notice %></p>
+<p>
+<div class="row">
+  <div class="large-12 columns">
+
+
+  <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Id:</strong>
@@ -52,10 +57,12 @@
 <% unless @user.trials_users.empty? %>
 <p>
   <strong>My Trials Participation:</strong><br>
-      <%= link_to  Trial.find_by_id(@user.trials_users.id).name , trial_path(@user.trials_users.trial_id) %>
+      <%= link_to  Trial.find_by_id(@user.trials.last.id).name , trial_path(@user.trials.last.id) %>
 </p>
 <% end %>
 
 <%= link_to 'Edit', edit_user_registration_path(@user) %> |
 <%= link_to 'Back', users_path %> |
 <%= link_to 'add to trial', new_trials_user_path(@user.id) %>
+</div>
+</div>

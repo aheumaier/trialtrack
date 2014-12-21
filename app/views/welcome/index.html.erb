@@ -7,9 +7,9 @@
       <div class="large-12 hide-for-small">
 
         <div id="featured" data-orbit>
-          <img src="http://placehold.it/1200x500&text=Slide Image 1" alt="slide image">
-          <img src="http://placehold.it/1200x500&text=Slide Image 2" alt="slide image">
-          <img src="http://placehold.it/1200x500&text=Slide Image 3" alt="slide image">
+          <%= image_tag("TrialCommunities.jpg", size: "1200x500", alt: "slide image") %>
+          <%= image_tag( "clinical-trials-banner.jpg", alt: "slide image") %>
+          <%= image_tag( "Clinical-Trial.jpg", alt: "slide image") %>
         </div>
 
       </div>
@@ -36,9 +36,10 @@
 
           <div class="large-4 small-6 columns">
 
-            <h4>Upcoming Shows</h4><hr>
+            <h4>Current Trials</h4><hr>
 
             <div class="row">
+
               <div class="large-1 column">
                 <img src="http://placehold.it/50x50&text=[img]">
               </div>
@@ -87,7 +88,7 @@
 
 
           <div class="large-4 small-6 columns">
-            <img src="http://placehold.it/300x465&text=Image">
+            <%= image_tag("keep-calm-and-clinical-trial.png", size: "300x465", alt: "slide image") %>
           </div>
 
 
@@ -99,10 +100,10 @@
 
             <h4>Blog</h4><hr>
             <div class="panel">
-              <h5><a href="#">Post Title 1</a></h5>
+              <h5><a href="#">Four Things to Consider Before Participating in a Clinical Trial</a></h5>
 
               <h6 class="subheader">
-                Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Suspendisse ultrices ornare tempor...
+                If you’re suffering from a life altering health condition such as diabetes or heart disease, you may be thinking about participating in a clinical trial. Many people decide to pursue alternative therapies if existing methods of treatment aren’t effectively reducing their symptoms. Here are four important things to consider before signing up for a clinical trial.
               </h6>
 
               <h6><a href="#">Read More »</a></h6>
@@ -125,11 +126,6 @@
         </div>
       </div>
     </div>
-
-
-
-
-
 
     <footer class="row">
       <div class="large-12 columns"><hr>
@@ -157,12 +153,6 @@
   </div>
 </div>
 
-<script>
-    document.write('<script src=js/vendor/' +
-            ('__proto__' in {} ? 'zepto' : 'jquery') +
-            '.js><\/script>')
-</script>
-<script src="js/foundation.min.js"></script>
 <script>
     $(document).foundation();
 </script>
