@@ -45,6 +45,6 @@
     <%= collection_select(:user, :organization_id, @organizations, :id, :name)  %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update user", :class => "button" %>
   </div>
 <% end %>
