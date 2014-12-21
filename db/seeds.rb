@@ -31,8 +31,31 @@ users = User.create([{first_name: "Andreas", last_name: "Heumaier", role_id: rol
             {first_name: "Trial4", last_name: "User", role_id: roles[1].id, address: addresses[8], organization_id: nil, password: "Test1234", email: "Trial4@medicore.de"},
 					  {first_name: "Trial5", last_name: "User", role_id: roles[1].id, address: addresses[9], organization_id: nil, password: "Test1234", email: "Trial5@medicore.de"}]
 					)
+
+scale_values = Scalevalue.create([
+                      {value:0, description: "Nein"},
+                      {value:1, description: "Ja"},
+                      {value:0, description: "Gar nicht"},
+                      {value:2, description: "Maessig"},
+                      {value:4, description: "Stark"}
+                  ]
+)
+
+scales = Scale.create([{name: "Ja-Nein", scale_start:0, scale_end:1},
+                       {name: "Likert 1-5 Schmerzen", scale_start:0, scale_end:4}
+                      ])
+
+scales_scale_values = ScalesScalevalue.create([
+    {scale_id: scales[0].id, scalevalues_id: scale_values[0].id},
+    {scale_id: scales[0].id, scalevalues_id: scale_values[1].id},
+    {scale_id: scales[1].id, scalevalues_id: scale_values[2].id},
+    {scale_id: scales[1].id, scalevalues_id: scale_values[3].id},
+    {scale_id: scales[1].id, scalevalues_id: scale_values[4].id}
+])
+
+
 100.times do |count|
-  Question.create(:question => "How much is #{count}", :interval => [3,6,12].sample)
+  Question.create(:question => "How much is #{count}", :interval => [3,6,12].sample, scale_id: scales[(0..scales.count-1).to_a.sample].id)
 end
 
 trials = Trial.create([{name: "trial 1", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[1].id },
@@ -45,9 +68,18 @@ trials = Trial.create([{name: "trial 1", description: "This is a trials descript
 
 users.each do |user|
   next if user.role.name != "Teilnehmer"
-  TrialUser.create({user_id: user.id, trial_id: trials.sample.id, start_date: Time.now, end_date: 3.months.from_now})
+  TrialsUser.create({user_id: user.id, trial_id: trials.sample.id, start_date: Time.now, end_date: 3.months.from_now})
 end
 
 Question.all.each do |question|
-  question.update_attributes({trial_id: trials.sample.id, start_time: [])
+  question.update_attributes({
+                                 interval: [2, 3, 4].sample
+                             })
+  QuestionsTrial.create({
+                          question_id: question.id,
+                          trial_id: trials.sample.id,
+                          start_time: [DateTime.new(2014, 12, 21, 6), DateTime.new(2014, 12, 21, 8), DateTime.new(2014, 12, 21, 10)].sample,
+                          end_time: [DateTime.new(2014, 12, 21, 18), DateTime.new(2014, 12, 21, 20), DateTime.new(2014, 12, 21, 22)].sample
+                        })
+
 end

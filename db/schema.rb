@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214164437) do
+ActiveRecord::Schema.define(version: 20141221202851) do
 
   create_table "addresses", force: true do |t|
     t.datetime "created_at"
@@ -62,15 +62,17 @@ ActiveRecord::Schema.define(version: 20141214164437) do
   add_index "questions", ["question_type_id"], name: "index_questions_on_question_type_id", using: :btree
   add_index "questions", ["scale_id"], name: "index_questions_on_scale_id", using: :btree
 
-  create_table "questions_trials", id: false, force: true do |t|
-    t.integer  "trial_id",    null: false
-    t.integer  "question_id", null: false
+  create_table "questions_trials", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "trial_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "questions_trials", ["question_id", "trial_id"], name: "index_questions_trials_on_question_id_and_trial_id", using: :btree
-  add_index "questions_trials", ["trial_id", "question_id"], name: "index_questions_trials_on_trial_id_and_question_id", using: :btree
+  add_index "questions_trials", ["question_id"], name: "index_questions_trials_on_question_id", using: :btree
+  add_index "questions_trials", ["trial_id"], name: "index_questions_trials_on_trial_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name",       limit: 30
@@ -84,6 +86,7 @@ ActiveRecord::Schema.define(version: 20141214164437) do
     t.integer  "value_no_answer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "scales_scalevalues", force: true do |t|

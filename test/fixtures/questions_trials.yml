@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  question_id_id: 
+  trial_id_id: 
+  start_time: 2014-12-21 21:28:51
+  end_time: 2014-12-21 21:28:51
+
+two:
+  question_id_id: 
+  trial_id_id: 
+  start_time: 2014-12-21 21:28:51
+  end_time: 2014-12-21 21:28:51

@@ -1,5 +1,6 @@
 class Question < ActiveRecord::Base
-  has_and_belongs_to_many :trials
+  has_many :questions_trials
+  has_many :trials, :through => :questions_trials
   belongs_to :question_type
   belongs_to :scale
 
