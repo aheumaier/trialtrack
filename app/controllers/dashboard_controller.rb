@@ -13,5 +13,6 @@ class DashboardController < ApplicationController
   end
 
   def teilnehmer
+    @trials = current_user.trials_users.where(["start_date <= NOW() AND end_date >= NOW()"]).load.select {|tu| tu.trial}
   end
 end
