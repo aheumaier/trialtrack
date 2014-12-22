@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :trials_users
   has_many :trials, :through => :trials_users
   accepts_nested_attributes_for :address, :trials
-
+  has_many :answers
 
   def full_name
     self.first_name+' '+self.last_name

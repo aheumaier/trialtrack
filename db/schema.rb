@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141221202851) do
+ActiveRecord::Schema.define(version: 20141221233833) do
 
   create_table "addresses", force: true do |t|
     t.datetime "created_at"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20141221202851) do
   create_table "answers", force: true do |t|
     t.integer  "question_id"
     t.integer  "user_id"
-    t.date     "due_date"
+    t.datetime "due_date",    null: false
     t.date     "answered_at"
     t.integer  "value"
     t.string   "value_text"
@@ -104,7 +104,10 @@ ActiveRecord::Schema.define(version: 20141221202851) do
     t.string   "description", limit: 50
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "scale_id"
   end
+
+  add_index "scalevalues", ["scale_id"], name: "index_scalevalues_on_scale_id", using: :btree
 
   create_table "trials", force: true do |t|
     t.string   "name"

@@ -32,26 +32,28 @@ users = User.create([{first_name: "Andreas", last_name: "Heumaier", role_id: rol
 					  {first_name: "Trial5", last_name: "User", role_id: roles[1].id, address: addresses[9], organization_id: nil, password: "Test1234", email: "Trial5@medicore.de"}]
 					)
 
-scale_values = Scalevalue.create([
-                      {value:0, description: "Nein"},
-                      {value:1, description: "Ja"},
-                      {value:0, description: "Gar nicht"},
-                      {value:2, description: "Maessig"},
-                      {value:4, description: "Stark"}
-                  ]
-)
 
 scales = Scale.create([{name: "Ja-Nein", scale_start:0, scale_end:1},
                        {name: "Likert 1-5 Schmerzen", scale_start:0, scale_end:4}
                       ])
 
-scales_scale_values = ScalesScalevalue.create([
-    {scale_id: scales[0].id, scalevalues_id: scale_values[0].id},
-    {scale_id: scales[0].id, scalevalues_id: scale_values[1].id},
-    {scale_id: scales[1].id, scalevalues_id: scale_values[2].id},
-    {scale_id: scales[1].id, scalevalues_id: scale_values[3].id},
-    {scale_id: scales[1].id, scalevalues_id: scale_values[4].id}
-])
+scale_values = Scalevalue.create([
+                                     {value:0, description: "Nein", scale_id: scales[0].id},
+                                     {value:1, description: "Ja", scale_id: scales[0].id},
+                                     {value:0, description: "Gar nicht", scale_id: scales[1].id},
+                                     {value:2, description: "Maessig", scale_id: scales[1].id},
+                                     {value:4, description: "Stark", scale_id: scales[1].id}
+                                 ]
+)
+
+
+#scales_scale_values = ScalesScalevalue.create([
+#    {scale_id: scales[0].id, scalevalues_id: scale_values[0].id},
+#    {scale_id: scales[0].id, scalevalues_id: scale_values[1].id},
+#    {scale_id: scales[1].id, scalevalues_id: scale_values[2].id},
+#    {scale_id: scales[1].id, scalevalues_id: scale_values[3].id},
+#    {scale_id: scales[1].id, scalevalues_id: scale_values[4].id}
+#])
 
 
 100.times do |count|

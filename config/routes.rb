@@ -10,6 +10,11 @@ Medicore::Application.routes.draw do
 
   namespace :api do
     resources :trials
+    resources :users do
+      member do
+        get 'question'
+      end
+    end
   end
 
   resources :users
