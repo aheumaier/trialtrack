@@ -18,7 +18,15 @@
     <%= f.label :value_text %><br>
     <%= f.text_field :value_text %>
   </div>
+
+<%
+   unless embedded
+%>
   <div class="actions">
     <%= f.submit %>
   </div>
+<%
+   end
+%>
+
 <% end %>

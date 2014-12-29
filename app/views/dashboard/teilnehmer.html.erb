@@ -26,22 +26,19 @@
 
   <div class="large-6 columns">
 
-    <% @trial_questions.each do |tq| %>
-    <div class="row">
-      <div class="large-2 columns small-3"><%= image_tag "437048.jpg" %></div>
-      <div class="large-10 columns">
-        <p><strong>Question: </strong><%= tq.question %> </p>
-        <p><strong>Answer: </strong><% @answer = tq.answers.where( user_id: current_user.id ).first %>
-          <%= render :partial => "scales/form_Likert_1-5_Schmerzen" %>
-          <!--#{tq.scale.name.downcase.gsub(' ','_')}" -->
+    <%
+       if @answers.count > 0
+    %>
 
-        </p>
-        <ul class="inline-list">
-          <li><a href="">Answer</a></li>
-          <li><a href="">Help</a></li>
-        </ul>
-      </div>
-    </div>
+    <%= form_tag(answer_answers_path, :method => :put) do -%>
+       <%= render :partial => "answers/form", :locals => {:answers => @answers, :embedded => true} %>
+
+       <input class="button" type="submit" value="Submit" />
+
+    <% end -%>
+
+    <% else %>
+        Es stehen im Moment keine Fragen zum Beantworten zur Verf&uuml;gung
     <% end %>
 
     <hr/>

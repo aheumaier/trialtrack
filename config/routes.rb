@@ -39,7 +39,11 @@ Medicore::Application.routes.draw do
 
   resources :organizations
 
-  resources :answers
+  resources :answers do
+    collection do
+      put 'answer'
+    end
+  end
 
   resources :addresses
 

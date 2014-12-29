@@ -3,4 +3,5 @@ module ApplicationHelper
     user.address ||= Address.new
     user
   end
+
 end

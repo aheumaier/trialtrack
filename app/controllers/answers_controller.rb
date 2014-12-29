@@ -24,26 +24,23 @@ class AnswersController < ApplicationController
 
   # POST /answers
   # POST /answers.json
-  def create
-    @answer = Answer.new(answer_params)
+  def answer
 
-    respond_to do |format|
-      if @answer.save
-        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @answer }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
+    errors = []
+
+    Answer.transaction do
+      params[:answers].each do |id, answer|
+        @answer = Answer.find(id)
+
+        unless @answer.update!(answer)
+          errors << @answer.errors
+        end
       end
     end
-  end
 
-  # PATCH/PUT /answers/1
-  # PATCH/PUT /answers/1.json
-  def update
     respond_to do |format|
-      if @answer.update(answer_params)
-        format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
+      if errors.empty?
+        format.html { redirect_to dashboard_teilnehmer_path(current_user), notice: 'Answer was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

@@ -13,8 +13,12 @@ class DashboardController < ApplicationController
   end
 
   def teilnehmer
-    @trial_user = current_user.trials_users.where(["start_date <= NOW() AND end_date >= NOW()"]).load.select {|tu| tu.trial}.last
-    @trial = Trial.find_by_id(@trial_user.trial_id)
-    @trial_questions = @trial.questions.load
-  end
+    @answers = []
+
+    @trial = current_user.trials_users.where(["start_date <= NOW() AND end_date >= NOW()"]).limit(1).first.trial
+    ids = @trial.questions.load.select {|q| q.id}
+
+    #TODO: remove comment for production
+    @answers = Answer.joins(:question).where(["user_id = ? AND value IS NULL AND questions.id IN (?) /*AND due_date >= NOW()*/", current_user.id, ids]).group(:question_id).to_a || []
+   end
 end

@@ -22,7 +22,7 @@ namespace :answers do
         if reschedule
           # delete already created answers for the future if present
           Answer.where({user_id: user.id, question_id: question.id, answered_at: nil}).all.each do |answer|
-            #next if answer.due_date < run_time
+            next if answer.due_date < run_time
             logger.debug "deleting unanswered answer id #{answer.id} due at #{answer.due_date}"
             answer.destroy
           end

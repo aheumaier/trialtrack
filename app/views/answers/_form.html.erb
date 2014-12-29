@@ -1,45 +1,59 @@
-<%= form_for(@answer) do |f| %>
-  <% if @answer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+<% answers.each_with_index do |answer, i| %>
+    <%= fields_for "answers[]", answer do |f| %>
 
-      <ul>
-      <% @answer.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <div class="row">
+          <div class="large-2 columns small-3"><%= image_tag "437048.jpg" %></div>
+          <div class="large-10 columns">
 
-  <div class="field">
-    <%= f.label :id %><br>
-    <%= f.number_field :id %>
-  </div>
-  <div class="field">
-    <%= f.label :question %><br>
-    <%= f.text_field :question %>
-  </div>
-  <div class="field">
-    <%= f.label :user %><br>
-    <%= f.text_field :user %>
-  </div>
-  <div class="field">
-    <%= f.label :due_date %><br>
-    <%= f.date_select :due_date %>
-  </div>
-  <div class="field">
-    <%= f.label :answered_at %><br>
-    <%= f.date_select :answered_at %>
-  </div>
-  <div class="field">
-    <%= f.label :value %><br>
-    <%= f.number_field :value %>
-  </div>
-  <div class="field">
-    <%= f.label :value_text %><br>
-    <%= f.text_field :value_text %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+            <% if answer.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+
+                  <ul>
+                    <% answer.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
+
+            <fieldset>
+              <legend><%= answer.question.question %></legend>
+
+            <%
+               length = answer.question.scale.scale_end - answer.question.scale.scale_start
+               case length
+                 when 0
+                   # Freitext
+            %>
+                <%= f.text_area(:value_text) %>
+            <%
+               when 1
+                 #Ja/Nein
+            %>
+                <%= format_scale(answer, f) %>
+            <%
+               else
+                 # Multiple choice
+            %>
+                <%= format_scale(answer, f) %>
+            <%
+               end
+
+               unless embedded
+            %>
+                <div class="actions">
+                  <%= f.submit %>
+                </div>
+            <%
+               end
+            %>
+            </fieldset>
+          </div>
+        </div>
+    <% end %>
 <% end %>
+
+
+
+
