@@ -1,84 +1,61 @@
 <div class="row">
-  <div class="large-3 columns">
-    <h1><h3>Teilnehmer<small>Dashboard</small></h3></h1>
-  </div>
-</div>
-
-
-
-<div class="row">
   <div class="large-12 columns">
-    <div class="row">
-      <div class="small-12 show-for-small"><br>
-        <img src="http://placehold.it/1000x600&text=For Small Screens"/>
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-
-<div class="row">
-  <div class="large-12 columns">
-    <div class="row">
-
-      <div class="large-6 small-6 columns">
-        <img src="http://placehold.it/500x250&text=Thumbnail"/>
-        <h6 class="panel"><%= link_to "Users", users_path %></h6>
-      </div>
-
-      <div class="large-6 small-6 columns">
-        <img src="http://placehold.it/500x250&text=Thumbnail"/>
-        <h6 class="panel"><%= link_to "Trials", trials_path %></h6>
-      </div>
-
+    <div class="panel">
+      <h1><%= image_tag "images4040.png" %> <%= @trial.name %> <small><%= @trial.summary %></small></h1>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="large-12 columns">
-    <div class="row">
-      <div class="large-8 columns">
-        <div class="panel radius">
 
-          <div class="row">
-            <div class="large-6 small-6 columns">
 
-              <h4>Header</h4><hr/>
-              <h5 class="subheader">Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Donec dignissim nibh fermentum odio ornare sagittis.
-              </h5>
-
-              <div class="show-for-small" align="center">
-                <a href="#" class="small radius button">Call To Action!</a><br>
-
-                <a href="#" class="small radius button">Call To Action!</a>
-              </div>
-
-            </div>
-            <div class="large-6 small-6 columns">
-
-              <p>Suspendisse ultrices ornare tempor. Aenean eget ultricies libero. Phasellus non ipsum eros. Vivamus at dignissim massa. Aenean dolor libero, blandit quis interdum et, malesuada nec ligula. Nullam erat erat, eleifend sed pulvinar ac. Suspendisse ultrices ornare tempor. Aenean eget ultricies libero.
-              </p>
-            </div>
-
-          </div>
-        </div>
+  <div class="large-3 columns ">
+    <div class="panel">
+      <a href="#"><%= image_tag "Red_Blue_Pill.jpg" %></a>
+      <h5><a href="#"><%= current_user.full_name %></a></h5>
+      <div class="section-container vertical-nav" data-section data-options="deep_linking: false; one_up: true">
+        <section class="section">
+          <h5 class="title"><a href="#">Contact</a></h5>
+        </section>
       </div>
 
-      <div class="large-4 columns hide-for-small">
-
-        <h4>Get In Touch!</h4><hr/>
-
-        <a class="large button expand" href="#">
-          Call To Action!
-        </a>
-
-        <a class="large button expand" href="#">
-          Call To Action!
-        </a>
-      </div>
     </div>
   </div>
+
+
+
+  <div class="large-6 columns">
+
+    <% @trial_questions.each do |tq| %>
+    <div class="row">
+      <div class="large-2 columns small-3"><%= image_tag "437048.jpg" %></div>
+      <div class="large-10 columns">
+        <p><strong>Question: </strong><%= tq.question %> </p>
+        <p><strong>Answer: </strong><% @answer = tq.answers.where( user_id: current_user.id ).first %>
+          <%= render :partial => "scales/form_Likert_1-5_Schmerzen" %>
+          <!--#{tq.scale.name.downcase.gsub(' ','_')}" -->
+
+        </p>
+        <ul class="inline-list">
+          <li><a href="">Answer</a></li>
+          <li><a href="">Help</a></li>
+        </ul>
+      </div>
+    </div>
+    <% end %>
+
+    <hr/>
+
+
+  </div>
+
+
+
+  <aside class="large-3 columns hide-for-small">
+    <p><img src="http://placehold.it/300x440&text=[ad]"/></p>
+    <p><img src="http://placehold.it/300x440&text=[ad]"/></p>
+  </aside>
+
 </div>
 
 

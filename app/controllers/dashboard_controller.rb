@@ -13,6 +13,8 @@ class DashboardController < ApplicationController
   end
 
   def teilnehmer
-    @trials = current_user.trials_users.where(["start_date <= NOW() AND end_date >= NOW()"]).load.select {|tu| tu.trial}
+    @trial_user = current_user.trials_users.where(["start_date <= NOW() AND end_date >= NOW()"]).load.select {|tu| tu.trial}.last
+    @trial = Trial.find_by_id(@trial_user.trial_id)
+    @trial_questions = @trial.questions.load
   end
 end
