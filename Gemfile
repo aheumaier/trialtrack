@@ -39,6 +39,8 @@ end
 
 gem 'kaminari' # adds pagination to ActiveModels
 
+gem 'simple_token_authentication'
+
 gem 'cancancan', '~> 1.9'
 
 gem 'devise'

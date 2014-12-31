@@ -1,29 +1,36 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Id:</strong>
-  <%= @trials_user.id %>
-</p>
+<div class="row">
+  <div class="large-12 columns">
 
-<p>
-  <strong>User:</strong>
-  <%= @trials_user.user.full_name %>
-</p>
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Trial:</strong>
-  <%= @trials_user.trial.name %>
-</p>
+    <p>
+      <strong>Id:</strong>
+      <%= @trials_user.id %>
+    </p>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @trials_user.start_date %>
-</p>
+    <p>
+      <strong>User:</strong>
+      <%= @trials_user.user.full_name %>
+    </p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @trials_user.end_date %>
-</p>
+    <p>
+      <strong>Trial:</strong>
+      <%= @trials_user.trial.name %>
+    </p>
 
-<%= link_to 'Edit', edit_trials_user_path(@trials_user) %> |
-<%= link_to 'Back', trials_users_path %>
+    <p>
+      <strong>Start date:</strong>
+      <%= @trials_user.start_date %>
+    </p>
+
+    <p>
+      <strong>End date:</strong>
+      <%= @trials_user.end_date %>
+    </p>
+
+    <%= link_to 'Edit', edit_trials_user_path(@trials_user) %> |
+    <%= link_to 'Back', trials_users_path %>
+  </div>
+</div>
+</p>

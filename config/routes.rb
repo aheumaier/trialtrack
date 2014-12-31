@@ -1,18 +1,17 @@
 Medicore::Application.routes.draw do
 
 
-  devise_for :users, :controllers => { :registrations => :registrations }
+  devise_for :users, :controllers => { :registrations => :registrations, :sessions => :sessions}
 
   get "welcome/index"
-  get "dashboard/superuser"
-  get "dashboard/admin"
-  get "dashboard/teilnehmer"
+
+  get "/dashboard/:user" => "dashboard#index"
 
   namespace :api do
     resources :trials
     resources :users do
-      member do
-        get 'question'
+      collection do
+        get 'questions'
       end
     end
   end

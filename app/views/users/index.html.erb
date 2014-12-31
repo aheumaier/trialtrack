@@ -3,40 +3,41 @@
   <div class="large-12 columns">
 
 
-  <h1>Listing users</h1>
+    <h1>Listing users</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Role</th>
-      <th>Organization</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+    <table>
+      <thead>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.role.name %></td>
-        <td><%= user.organization.nil? ? "" : link_to( user.organization.name, organization_path(user.organization.id)) %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Id</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Role</th>
+        <th>Organization</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
 
-<br>
+      <tbody>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.role.name %></td>
+            <td><%= user.organization.nil? ? "" : link_to( user.organization.name, organization_path(user.organization.id)) %></td>
+            <td><%= link_to 'Show', user %></td>
+            <td><%= link_to 'Edit', edit_user_path(user) %></td>
+            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
 
-<%= link_to 'New User', new_user_path %>
+    <br>
+
+    <%= link_to 'New User', new_user_path %>
+  </div>
 </div>
-</div>
+</p>

@@ -3,66 +3,67 @@
   <div class="large-12 columns">
 
 
-  <p id="notice"><%= notice %></p>
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Id:</strong>
-  <%= @user.id %>
-</p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @user.role.name %>
-</p>
-
-<% unless @user.address.nil?  %>
     <p>
-      <strong>Street:</strong>
-      <%= @user.address.street %>
+      <strong>Id:</strong>
+      <%= @user.id %>
     </p>
-    <p>
-      <strong>City:</strong>
-      <%= @user.address.city%>
-    </p>
-    <p>
-      <strong>PLZ:</strong>
-      <%= @user.address.city_code %>
-    </p>
-    <p>
-      <strong>Country:</strong>
-      <%= @user.address.country %>
-    </p>
-<% end %>
 
-<p>
-  <strong>Organization:</strong>
-  <%= @user.organization.nil? ? "" : link_to( @user.organization.name, organization_path(@user.organization.id) ) %>
-</p>
+    <p>
+      <strong>First name:</strong>
+      <%= @user.first_name %>
+    </p>
 
-<% unless @user.trials_users.empty? %>
-<p>
-  <strong>My Trials Participation:</strong><br>
-      <%= link_to  Trial.find_by_id(@user.trials.last.id).name , trial_path(@user.trials.last.id) %>
-</p>
-<% end %>
+    <p>
+      <strong>Last name:</strong>
+      <%= @user.last_name %>
+    </p>
 
-<%= link_to 'Edit', edit_user_registration_path(@user) %> |
-<%= link_to 'Back', users_path %> |
-<%= link_to 'add to trial', new_trials_user_path(@user.id) %>
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
+
+    <p>
+      <strong>Role:</strong>
+      <%= @user.role.name %>
+    </p>
+
+    <% unless @user.address.nil?  %>
+        <p>
+          <strong>Street:</strong>
+          <%= @user.address.street %>
+        </p>
+        <p>
+          <strong>City:</strong>
+          <%= @user.address.city%>
+        </p>
+        <p>
+          <strong>PLZ:</strong>
+          <%= @user.address.city_code %>
+        </p>
+        <p>
+          <strong>Country:</strong>
+          <%= @user.address.country %>
+        </p>
+    <% end %>
+
+    <p>
+      <strong>Organization:</strong>
+      <%= @user.organization.nil? ? "" : link_to( @user.organization.name, organization_path(@user.organization.id) ) %>
+    </p>
+
+    <% unless @user.trials_users.empty? %>
+        <p>
+          <strong>My Trials Participation:</strong><br>
+          <%= link_to  Trial.find_by_id(@user.trials.last.id).name , trial_path(@user.trials.last.id) %>
+        </p>
+    <% end %>
+
+    <%= link_to 'Edit', edit_user_registration_path(@user) %> |
+    <%= link_to 'Back', users_path %> |
+    <%= link_to 'add to trial', new_trials_user_path(@user.id) %>
+  </div>
 </div>
-</div>
+</p>

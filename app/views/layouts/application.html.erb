@@ -8,6 +8,8 @@
 
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "vendor/modernizr" %>
+  <%= javascript_include_tag :application %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -41,23 +43,20 @@
 <ul class="hmenu">
 </ul>
 <div class="row">
-  <div class="large-3 columns">
     <% if flash[:notice] %>
-        <div data-notice class="alert-box round">
+        <div data-alert class="alert-box info round">
           <%= notice %>
+          <span class="close">&times;</span>
         </div>
     <% end %>
     <% if flash[:alert] %>
-        <div data-alert class="alert-box round">
+        <div data-alert class="alert-box alert round">
           <%= alert %>
         </div>
     <% end %>
-  </div>
-</div>
 </div>
 
 <%= yield %>
 
-<%= javascript_include_tag "application" %>
 </body>
 </html>

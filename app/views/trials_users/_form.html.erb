@@ -19,15 +19,15 @@
     <%= f.label :trial %><br>
     <%= collection_select(:trials_user, :trial_id, @trials, :id, :name)  %>
   </div>
-  <div class="field">
+  <div class="field clearfix">
     <%= f.label :start_date %><br>
-    <%= f.date_select :start_date %>
+    <%= f.date_select :start_date, {}, :class => "forceleft"  %>
   </div>
-  <div class="field">
-    <%= f.label :end_date %><br>
-    <%= f.date_select :end_date %>
+  <div class="field clearfix">
+    <%= f.label :end_date, {} %><br>
+    <%= f.date_select :end_date, {}, :class => "forceleft" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit @trials_user.id.nil? ? "Hinzuf&uuml;gen".html_safe : "Speichern", :class => "button"%>
   </div>
 <% end %>

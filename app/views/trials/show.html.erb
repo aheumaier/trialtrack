@@ -1,31 +1,37 @@
-<p id="notice"><%= notice %></p>
+<p>
+<div class="row">
+  <div class="large-12 columns">
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <br>
-  <%= @trial.name %>
-</p>
-<p>
-  <strong>Summary:</strong>
-  <br>
-  <%= @trial.summary %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <br>
-  <%= @trial.description %>
-</p>
-<p>
-  <strong>Organization:</strong>
-  <%= link_to @trial.organization.name, organization_path(@trial.organization.id) %>
-</p>
-<p>
-  <strong>Catalog Questions:</strong>
-  <br>
-  <% @trial.questions.each do |question| %>
-  <%= question.id %>: <%= question.question %><br>
-  <% end %>
-</p>
+    <p>
+      <strong>Name:</strong>
+      <br>
+      <%= @trial.name %>
+    </p>
+    <p>
+      <strong>Summary:</strong>
+      <br>
+      <%= @trial.summary %>
+    </p>
+    <p>
+      <strong>Description:</strong>
+      <br>
+      <%= @trial.description %>
+    </p>
+    <p>
+      <strong>Organization:</strong>
+      <%= link_to @trial.organization.name, organization_path(@trial.organization.id) %>
+    </p>
+    <p>
+      <strong>Catalog Questions:</strong>
+      <br>
+      <% @trial.questions.each do |question| %>
+          <%= question.id %>: <%= question.question %><br>
+      <% end %>
+    </p>
 
-<%= link_to 'Edit', edit_trial_path(@trial) %> |
-<%= link_to 'All Trials', trials_path %>
+    <%= link_to 'Edit', edit_trial_path(@trial) %> |
+    <%= link_to 'All Trials', trials_path %>
+  </div>
+</div>
+</p>
