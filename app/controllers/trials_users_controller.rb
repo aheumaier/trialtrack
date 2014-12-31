@@ -1,10 +1,11 @@
 class TrialsUsersController < ApplicationController
   before_action :set_trials_user, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /trials_users
   # GET /trials_users.json
   def index
-    @trials_users = TrialsUser.all
+    @trials_users = TrialsUser.accessible_by(current_ability)
   end
 
   # GET /trials_users/1
@@ -22,7 +23,7 @@ class TrialsUsersController < ApplicationController
   # GET /trials_users/1/edit
   def edit
     @users = User.all
-    @trials = Trial.all
+    @trials = Trial.accessible_by(current_ability)
   end
 
   # POST /trials_users

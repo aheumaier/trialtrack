@@ -1,11 +1,12 @@
 class TrialsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_trial, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /trials
   # GET /trials.json
   def index
-    @trials = Trial.all
+    @trials = Trial.accessible_by(current_ability)
   end
 
   # GET /trials/1
@@ -16,6 +17,7 @@ class TrialsController < ApplicationController
   # GET /trials/new
   def new
     @trial = Trial.new
+    @questions = Question.all.load
     @organizations = Organization.all.load
   end
 

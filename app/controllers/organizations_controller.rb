@@ -1,11 +1,12 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all
+    @organizations = Organization.accessible_by(current_ability)
   end
 
   # GET /organizations/1

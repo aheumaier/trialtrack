@@ -33,7 +33,7 @@
 
     <% for question in @questions %>
         <div>
-          <%= check_box_tag "trial[question_ids][]", question.id, @my_questions.include?(question) %>
+          <%= check_box_tag "trial[question_ids][]", question.id,  @my_questions ? @my_questions.include?(question): false  %>
           <%= question.question %>
         </div>
     <% end %>

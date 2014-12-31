@@ -21,8 +21,8 @@
       <% @trials_users.each do |trials_user| %>
           <tr>
             <td><%= trials_user.id %></td>
-            <td><%= trials_user.user %></td>
-            <td><%= trials_user.trial %></td>
+            <td><%= trials_user.user.full_name %></td>
+            <td><%= trials_user.trial.name %></td>
             <td><%= trials_user.start_date %></td>
             <td><%= trials_user.end_date %></td>
             <td><%= link_to 'Show', trials_user %></td>

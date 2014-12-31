@@ -7,8 +7,16 @@ class Ability
     #   user ||= User.new # guest user (not logged in)
        if user.role.name.downcase == "superuser"
          can :manage, :all
+       elsif user.role.name.downcase == "admin"
+         can :manage, Trial, :organization => { :id => user.organization_id }
+         can :create, Trial
+         can :manage, TrialsUser, :trial_id => user.organization.trials
+         can [:read, :update], Organization, :id => user.organization_id
+         can [:read, :update], User, :organization => { :id => user.organization_id }
        else
+
          can [:read, :update], Answer
+         can [:read, :update], User, :id => user.id
        end
     #
     # The first argument to `can` is the action you are giving the user

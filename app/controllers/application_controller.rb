@@ -2,28 +2,24 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' && c.request.fullpath.match(/^api/)}
-
   acts_as_token_authentication_handler_for User
 
   # This is our new function that comes before Devise's one
   before_filter :authenticate_user_from_token!
-
   before_action :authenticate_user!
-
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   rescue_from CanCan::AccessDenied do |exception|
-    logger.debug "CanCan exeption is called"
+    Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
     #respond_to do |format|
-
       #format.json { render :json=> exception.to_json, :status => :forbidden }
       #format.html { render :html=> exception.to_s, :status => :forbidden }
-
     #end
     redirect_to "/dashboard/#{current_user.role.name.downcase}", :alert => exception.message
   end
 
   protected
+
   # allow strong params  for custom devise forms
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:first_name,:last_name, :email, :password,:password_confirmation,:current_password,:role_id,
