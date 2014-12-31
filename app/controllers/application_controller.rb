@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   # This is our new function that comes before Devise's one
   before_filter :authenticate_user_from_token!
+  before_filter :populate_roles
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -28,6 +29,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name,:last_name, :email, :password,:password_confirmation,:current_password,:role_id,
                                                                    {address_attributes: [ :id, :street, :city, :city_code, :country ]}, :organization_id )
     }
+  end
+
+  def populate_roles
+    @user = @user || current_user
+    @role = @role || @user.role unless @user.nil?
   end
 
   private

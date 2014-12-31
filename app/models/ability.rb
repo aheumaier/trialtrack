@@ -10,7 +10,8 @@ class Ability
        elsif user.role.name.downcase == "admin"
          can :manage, Trial, :organization => { :id => user.organization_id }
          can :create, Trial
-         can :manage, TrialsUser, :trial_id => user.organization.trials
+         can :manage, TrialsUser, :trial_id => user.organization.trial_ids
+         can :create, TrialsUser
          can [:read, :update], Organization, :id => user.organization_id
          can [:read, :update], User, :organization => { :id => user.organization_id }
        else

@@ -17,7 +17,7 @@ class TrialsUsersController < ApplicationController
   def new
     @trials_user = TrialsUser.new
     @users = User.all.load
-    @trials = Trial.order('created_at DESC').all
+    @trials = Trial.accessible_by(current_ability) #.order('created_at DESC')
   end
 
   # GET /trials_users/1/edit

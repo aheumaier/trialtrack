@@ -5,8 +5,12 @@ class DashboardController < ApplicationController
 
   def index
 
-    if current_user.role.name.downcase != params[:user]
-      redirect_to "/dashboard/#{current_user.role.name.downcase}" and return
+    @user = @user || current_user
+    @role = @role || @user.role.load
+    @organization = @user.organization
+
+    if @role.name.downcase != params[:user]
+      redirect_to "/dashboard/#{@role.name.downcase}" and return
     end
 
     case params[:user]

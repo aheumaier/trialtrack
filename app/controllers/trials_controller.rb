@@ -18,7 +18,7 @@ class TrialsController < ApplicationController
   def new
     @trial = Trial.new
     @questions = Question.all.load
-    @organizations = Organization.all.load
+    @organizations = Organization.accessible_by(current_ability).load
   end
 
   # GET /trials/1/edit

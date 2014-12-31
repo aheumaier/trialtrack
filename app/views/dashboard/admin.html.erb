@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-3 columns">
-    <h1><h3>Superuser <small>Dashboard</small></h3></h1>
+    <h1><h3>Dashboard <small><%= @organization.name %></small></h3></h1>
   </div>
 </div>
 
@@ -90,22 +90,3 @@
   </div>
 </div>
 
-
-<footer class="row">
-  <div class="large-12 columns">
-    <hr>
-    <div class="row">
-      <div class="large-6 columns">
-        <p>© Copyright no one at all. Go to town.</p>
-      </div>
-      <div class="large-6 columns">
-        <ul class="inline-list right">
-          <li><%= link_to "Users", users_path %></li>
-          <li><%= link_to "Trials", trials_path %></li>
-          <li><%= link_to "Roles",roles_path %></li>
-          <li><%= link_to "Organizatios", organizations_path %></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>
