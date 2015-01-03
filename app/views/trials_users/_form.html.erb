@@ -28,6 +28,8 @@
     <%= f.date_select :end_date, {}, :class => "forceleft" %>
   </div>
   <div class="actions">
-    <%= f.submit @trials_user.id.nil? ? "Hinzuf&uuml;gen".html_safe : "Speichern", :class => "button"%>
+    <%= f.submit save_or_update_button(@trials_user), :class => "button"%>
+    <%= cancel_button() %>
+
   </div>
 <% end %>

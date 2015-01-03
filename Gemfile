@@ -10,9 +10,7 @@ gem 'mysql2'
 gem 'sass-rails', '~> 4.0.0'
 
 gem "zurb-foundation"
-gem 'foundation-rails', '5.4.3.1'
-gem 'foundation-icons-sass-rails'
-
+gem 'foundation-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -40,6 +38,10 @@ end
 
 group :development do 
    gem 'web-console', '~> 2.0'
+end
+
+group :assets do
+   gem 'foundation-icons-sass-rails'
 end
 
 gem 'kaminari' # adds pagination to ActiveModels

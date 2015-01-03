@@ -23,9 +23,9 @@ class TrialsController < ApplicationController
 
   # GET /trials/1/edit
   def edit
-    @organizations = Organization.all.load
-    @my_questions = @trial.questions.load
-    @questions = Question.all.load
+    @organizations = Organization.accessible_by(current_ability)
+    @my_questions = @trial.questions.all.load
+    @questions = Question.where(["id NOT in (?)", @my_questions.ids.empty? ? -1 : @my_questions.ids])
   end
 
   # POST /trials
@@ -47,8 +47,13 @@ class TrialsController < ApplicationController
   # PATCH/PUT /trials/1
   # PATCH/PUT /trials/1.json
   def update
+    p = trial_params.clone
+    if p["question_ids"].nil?
+      p["question_ids"] = []
+    end
+
     respond_to do |format|
-      if @trial.update(trial_params)
+      if @trial.update(p)
         format.html { redirect_to @trial, notice: 'Trial was successfully updated.' }
         format.json { head :no_content }
       else
@@ -67,6 +72,22 @@ class TrialsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def assign_question
+    question_trial = QuestionsTrial.new({:question_id => params[:question_id], :trial_id => params[:trial_id]})
+    if question_trial.save
+      @question = question_trial.question
+    end
+  end
+
+
+  def remove_question
+    question_trial = QuestionsTrial.where({:question_id => params[:question_id], :trial_id => params[:id]}).first
+    unless question_trial.nil?
+      question_trial.destroy
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

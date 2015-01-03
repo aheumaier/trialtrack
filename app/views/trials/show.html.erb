@@ -2,36 +2,61 @@
 <div class="row">
   <div class="large-12 columns">
     <p id="notice"><%= notice %></p>
-
-    <p>
-      <strong>Name:</strong>
-      <br>
+    <h1>
+      <%= image_tag "images4040.png" %>
       <%= @trial.name %>
-    </p>
-    <p>
-      <strong>Summary:</strong>
+      <small>
+        (<%= link_to @trial.organization.name, organization_path(@trial.organization.id) %>)
+      </small>
       <br>
-      <%= @trial.summary %>
-    </p>
-    <p>
-      <strong>Description:</strong>
-      <br>
-      <%= @trial.description %>
-    </p>
-    <p>
-      <strong>Organization:</strong>
-      <%= link_to @trial.organization.name, organization_path(@trial.organization.id) %>
-    </p>
-    <p>
-      <strong>Catalog Questions:</strong>
-      <br>
-      <% @trial.questions.each do |question| %>
-          <%= question.id %>: <%= question.question %><br>
-      <% end %>
-    </p>
+      <small>
+        <%= @trial.summary %>
+      </small>
+    </h1>
+    <br>
 
-    <%= link_to 'Edit', edit_trial_path(@trial) %> |
-    <%= link_to 'All Trials', trials_path %>
+    <dl class="accordion" data-accordion>
+      <dd class="accordion-navigation">
+        <a href="#panel1a">Overview</a>
+        <div id="panel1a" class="content active">
+          <fieldset>
+            <legend>Description</legend>
+            <div id="description">
+            <%= @trial.description %>
+            </div>
+          </fieldset>
+          <%= link_to 'Edit', edit_trial_path(@trial) %> |
+          <%= link_to 'All Trials', trials_path %>
+        </div>
+      </dd>
+      <dd class="accordion-navigation">
+        <a href="#panel2a">Catalog</a>
+        <div id="panel2a" class="content">
+          <fieldset>
+            <legend>Questions</legend>
+            <% @trial.questions.each do |question| %>
+                <%= question.id %>: <%= question.question %><br>
+            <% end %>
+            <%= link_to 'Edit', edit_trial_path(@trial) %> |
+            <%= link_to 'All Trials', trials_path %>
+          </fieldset>
+
+
+        </div>
+      </dd>
+    </dl>
   </div>
 </div>
 </p>
+
+
+<script>
+  function toggleEdit() {
+      var width = $('#description').width();
+      var height = $('#description').height();
+      $('#description').replaceWith('<textarea style="width:' + width + 'px;height:' + height + 'px"><%= @trial.description %></textarea>');
+  }
+
+</script>
+
+<input type="button" value="Edit" onclick="toggleEdit()">

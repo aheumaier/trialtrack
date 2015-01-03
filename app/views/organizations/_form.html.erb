@@ -21,6 +21,8 @@
    <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit save_or_update_button(@organization), :class => "button"%>
+    <%= cancel_button() %>
+
   </div>
 <% end %>

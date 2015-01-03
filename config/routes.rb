@@ -4,6 +4,7 @@ Medicore::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => :registrations, :sessions => :sessions}
 
   get "welcome/index"
+  get "welcome/contact"
 
   get "/dashboard/:user" => "dashboard#index"
 
@@ -22,7 +23,12 @@ Medicore::Application.routes.draw do
 
   resources :trials_questions
 
-  resources :trials
+  resources :trials do
+    member do
+      post 'assign_question'
+      delete 'remove_question'
+    end
+  end
 
   resources :scalevalues
 

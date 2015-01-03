@@ -60,10 +60,10 @@
           <%= link_to  Trial.find_by_id(@user.trials.last.id).name , trial_path(@user.trials.last.id) %>
         </p>
     <% end %>
-
-    <%= link_to 'Edit', edit_user_registration_path(@user) %> |
-    <%= link_to 'Back', users_path %> |
-    <%= link_to 'add to trial', new_trials_user_path(@user.id) %>
+          <%= button_tag( "Edit", :type => :button, :class => "button", :onclick => "document.location.href='#{edit_user_path(@user)}'" )%>
+          <%= button_tag( "Add To trial", :type => :button, :class => "button", :onclick => "document.location.href='#{new_trials_user_path(@user.id)}'" )%>
+          <%= cancel_button() %>
+ 
   </div>
 </div>
 </p>

@@ -1,0 +1,8 @@
+<%
+    if @question
+%>
+    addQuestion(<%=@question.id%>, '<%=@question.question%>');
+
+<% else %>
+    alert('Es ist ein Fehler beim Hinzuf&uuml;gen der Frage aufgetreten');
+<% end %>

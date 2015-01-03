@@ -1,12 +1,10 @@
 <p>
 <div class="row">
   <div class="large-12 columns">
-    <h1>Editing trials_user</h1>
+    <h1><%= @trials_user.user.full_name %> <small>Edit</small></h1>
 
     <%= render 'form' %>
 
-    <%= link_to 'Show', @trials_user %> |
-    <%= link_to 'Back', trials_users_path %>
-  </div>
+   </div>
 </div>
 </p>

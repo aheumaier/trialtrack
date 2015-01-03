@@ -13,6 +13,7 @@
  *= require_tree .
  */
 
+@import "foundation-icons";
 
 
 span.close { cursor:pointer }
@@ -41,3 +42,13 @@ span.close { cursor:pointer }
 * html .clearfix { height: 1%; }
 .clearfix { display: block; }
 /* close commented backslash hack */
+
+
+
+.showrow {
+    cursor: pointer;
+}
+
+.showrow:hover {
+    background-color: #ddd;
+}

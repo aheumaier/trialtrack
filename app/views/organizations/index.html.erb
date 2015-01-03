@@ -1,11 +1,15 @@
-<h1>Listing organizations</h1>
+<p>
+<div class="row">
+  <div class="large-12 columns">
 
-<table>
+
+  <h1>Organizations <small>overview</small></h1>
+
+<table style="border-collapse: collapse">
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Address</th>
-      <th></th>
+      <th>Name</th>
+      <th>Location</th>
       <th></th>
       <th></th>
     </tr>
@@ -13,10 +17,9 @@
 
   <tbody>
     <% @organizations.each do |organization| %>
-      <tr>
-        <td><%= organization.name %></td>
-        <td><%= organization.address.city %></td>
-        <td><%= link_to 'Show', organization %></td>
+      <tr class="showrow">
+        <td onclick="document.location.href='/organizations/<%=organization.id%>'"><%= organization.name %></td>
+        <td onclick="document.location.href='/organizations/<%=organization.id%>'"><%= organization.address.city %></td>
         <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
         <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -26,4 +29,7 @@
 
 <br>
 
-<%= link_to 'New Organization', new_organization_path %>
+ <%= link_to 'New Organization', new_organization_path, { :class => "button"} %>
+</div>
+</div>
+</p>

@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :set_answer, only: [:show, :edit, :destroy]
 
   # GET /answers
   # GET /answers.json
@@ -29,10 +29,12 @@ class AnswersController < ApplicationController
     errors = []
 
     Answer.transaction do
-      params[:answers].each do |id, answer|
+      params.permit!
+      params[:answers].each do |id, a|
         @answer = Answer.find(id)
-
-        unless @answer.update!(answer)
+        Rails.logger.debug @answer.inspect
+        unless @answer.update!(a)
+          Rails.logger.debug @answer.inspect
           errors << @answer.errors
         end
       end
@@ -40,7 +42,7 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if errors.empty?
-        format.html { redirect_to dashboard_teilnehmer_path(current_user), notice: 'Answer was successfully updated.' }
+        format.html { redirect_to '/dashboard/teilnehmer', notice: 'Answer was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -62,6 +64,7 @@ class AnswersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
+
       @answer = Answer.find(params[:id])
     end
 

@@ -1,11 +1,17 @@
 <p>
 <div class="row">
   <div class="large-12 columns">
-    <h1>New trial</h1>
+
+    <nav class="breadcrumbs">
+      <a href="#">Home</a>
+      <a href="<%= trials_path %>">Trials</a>
+      <a class="current" href="<%= new_trial_path %>">New</a>
+    </nav>
+
+    <h1>Trial <small>new</small></h1>
 
     <%= render 'form' %>
 
-    <%= link_to 'Back', trials_path %>
   </div>
 </div>
 </p>

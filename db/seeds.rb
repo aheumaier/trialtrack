@@ -20,7 +20,12 @@ addresses = Address.create([{street:"mystreet 1", city: "Hamburg", city_code: 23
                            {street:"mystreet 9", city: "Hamburg", city_code: 234234, country: "Germany"},
                            {street:"mystreet 10", city: "Hamburg", city_code: 234234, country: "Germany"},]
 )
-organizations = Organization.create([{name: "Medicore", address: addresses[0]}, {name: "Company1", address: addresses[1]}])
+organizations = Organization.create([{name: "Medicore", address: addresses[0]}, 
+                                     {name: "Company1", address: addresses[1]},
+                                     {name: "Company2", address: addresses[1]},
+                                     {name: "Company3", address: addresses[1]},
+                                     {name: "Company4", address: addresses[1]},
+                                     {name: "Company5", address: addresses[1]}])
 
 users = User.create([{first_name: "Andreas", last_name: "Heumaier", role_id: roles[0].id, address: addresses[2], organization_id: organizations[0].id, password: "Test1234", email: "andreas@medicore.de"},
 					  {first_name: "Christoph", last_name: "Klaja", role_id: roles[0].id, address: addresses[3], organization_id: organizations[0].id, password: "Test1234", email: "Christoph@medicore.de"},
@@ -63,10 +68,10 @@ end
 trials = Trial.create([{name: "trial 1", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[1].id },
               {name: "trial 2", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[1].id},
               {name: "trial 3", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[1].id},
-              {name: "trial 4", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[1].id},
-              {name: "trial 5", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[1].id},
-              {name: "trial 6", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[1].id},
-              {name: "trial 7", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[1].id}])
+              {name: "trial 4", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[3].id},
+              {name: "trial 5", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[3].id},
+              {name: "trial 6", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[3].id},
+              {name: "trial 7", description: "This is a trials description which schould be some longer than other things", summary: "This is a summary", organization_id: organizations[4].id}])
 
 users.each do |user|
   next if user.role.name != "Teilnehmer"
