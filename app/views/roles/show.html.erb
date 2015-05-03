@@ -1,14 +1,25 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Id:</strong>
-  <%= @role.id %>
-</p>
+<div class="row">
+  <div class="large-12 columns">
 
-<p>
-  <strong>Name:</strong>
-  <%= @role.name %>
-</p>
+    <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_role_path(@role) %> |
-<%= link_to 'Back', roles_path %>
+    <p>
+      <strong>Id:</strong>
+      <%= @role.id %>
+    </p>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @role.name %>
+    </p>
+
+    <div class="actions">
+      <%= button_tag( "Edit", :type => :button, :class => "button", :onclick => "document.location.href='#{edit_role_path(@role)}'" )%>
+      <%= button_tag( "Back", :type => :button, :class => "button", :onclick => "document.location.href='#{roles_path}'" )%>
+    </div>
+
+
+  </div>
+</div>
+</p>

@@ -1,29 +1,35 @@
-<h1>Listing roles</h1>
+<p>
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Roles <small>overview</small></h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @roles.each do |role| %>
+    <table>
+      <thead>
       <tr>
-        <td><%= role.id %></td>
-        <td><%= role.name %></td>
-        <td><%= link_to 'Show', role %></td>
-        <td><%= link_to 'Edit', edit_role_path(role) %></td>
-        <td><%= link_to 'Destroy', role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Id</th>
+        <th>Name</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
 
-<br>
+      <tbody>
+      <% @roles.each do |role| %>
+        <tr class="showrow">
+          <td onclick="document.location.href='/roles/<%=role.id%>'"><%= role.name %></td>
+          <td onclick="document.location.href='/roles/<%=role.id%>'"><%= role.name %></td>
+          <td><%= link_to 'Show', role %></td>
+          <td><%= link_to 'Edit', edit_role_path(role) %></td>
+          <td><%= link_to 'Destroy', role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
 
-<%= link_to 'New Role', new_role_path %>
+    <br>
+
+    <%= link_to 'New Role', new_role_path, { :class => "button"} %>
+  </div>
+</div>
+</p>

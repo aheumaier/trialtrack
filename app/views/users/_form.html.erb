@@ -4,9 +4,11 @@
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @user.errors.full_messages.each do |msg| %>
+            <div data-alert class="alert-box alert round">
+              <%= msg %>
+            </div>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -30,20 +32,24 @@
     <%= f.text_field :password %>
   </div>
 
-  <div class="field">
-    <%= f.label :role %><br>
-    <%= collection_select(:user, :role_id, @roles, :id, :name)  %>
-  </div>
+  <% if can? :update, Role %>
+    <div class="field">
+      <%= f.label :role %><br>
+      <%= collection_select(:user, :role_id, @roles, :id, :name)  %>
+    </div>
+  <% end %>
 
-    <%= f.fields_for :address do |builder| %>
+  <%= f.fields_for :address do |builder| %>
     <%= render :partial => 'addresses/address_fields', :locals => {:f => builder} %>
-    <% end %>
+  <% end %>
 
+  <% if can? :create, Organization%>
+    <div class="field">
+      <%= f.label :organization %><br>
+      <%= collection_select(:user, :organization_id, @organizations, :id, :name)  %>
+    </div>
+  <% end %>
 
-  <div class="field">
-    <%= f.label :organization %><br>
-    <%= collection_select(:user, :organization_id, @organizations, :id, :name)  %>
-  </div>
   <div class="actions">
     <%= f.submit save_or_update_button(@user), :class => "button"%>
     <%= cancel_button() %>

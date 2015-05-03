@@ -4,9 +4,9 @@
       <h2><%= pluralize(@role.errors.count, "error") %> prohibited this role from being saved:</h2>
 
       <ul>
-      <% @role.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @role.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -20,6 +20,8 @@
     <%= f.text_field :name %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit save_or_update_button(@role), :class => "button"%>
+    <%= cancel_button() %>
+
   </div>
 <% end %>

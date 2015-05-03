@@ -19,7 +19,7 @@
     <% @organizations.each do |organization| %>
       <tr class="showrow">
         <td onclick="document.location.href='/organizations/<%=organization.id%>'"><%= organization.name %></td>
-        <td onclick="document.location.href='/organizations/<%=organization.id%>'"><%= organization.address.city %></td>
+        <td onclick="document.location.href='/organizations/<%=organization.id%>'"><%=  organization.address.city if organization.address  %></td>
         <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
         <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

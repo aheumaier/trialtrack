@@ -2,14 +2,6 @@
 <div class="row">
   <div class="large-12 columns">
 
-
-    <p id="notice"><%= notice %></p>
-
-    <p>
-      <strong>Id:</strong>
-      <%= @user.id %>
-    </p>
-
     <p>
       <strong>First name:</strong>
       <%= @user.first_name %>
@@ -60,6 +52,7 @@
           <%= link_to  Trial.find_by_id(@user.trials.last.id).name , trial_path(@user.trials.last.id) %>
         </p>
     <% end %>
+
           <%= button_tag( "Edit", :type => :button, :class => "button", :onclick => "document.location.href='#{edit_user_path(@user)}'" )%>
           <%= button_tag( "Add To trial", :type => :button, :class => "button", :onclick => "document.location.href='#{new_trials_user_path(@user.id)}'" )%>
           <%= cancel_button() %>

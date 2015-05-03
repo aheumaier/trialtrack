@@ -1,84 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title><%= content_for?(:title) ? yield(:title) : "Medicore" %></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "vendor/modernizr" %>
-  <%= javascript_include_tag :application %>
+  <title>Grayscale - Start Bootstrap Theme</title>
 
-  <%= csrf_meta_tags %>
+  <!-- Bootstrap Core CSS -->
+  <link href="/assets/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="/assets/grayscale.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
 </head>
-<body>
-<nav class="top-bar" data-topbar role="navigation">
-  <ul class="title-area">
-    <li class="name"> <h1><a href="#">Medicore</a></h1> </li>
-    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li> </ul>
-  <section class="top-bar-section">
-    <!-- Right Nav Section -->
-    <ul class="right">
-      <% if user_signed_in? -%>
-          <li class="active"><%= link_to "Dashboard", "/dashboard/"+@role.name.downcase %></li>
-          <li class="has-dropdown"> <a href="#"><%= link_to @user.full_name, "#" %></a>
-            <ul class="dropdown">
-              <li ><%= link_to('Profile', user_path(current_user.id)) %></li>
-              <li class="active"><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
-            </ul>
-          </li>
-      <% end -%>
-    </ul>
-    <!-- Left Nav Section -->
-    <ul class="left">
-      <% if user_signed_in? -%>
-          <li> <%= link_to @role.name.downcase, "#" %> </li>
-      <% else -%>
-          <li><%= link_to('Login', new_user_session_path)  %> </li>
-      <% end -%>
-    </ul>
-  </section>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+<!-- Navigation -->
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+        <i class="fa fa-bars"></i>
+      </button>
+      <a class="navbar-brand page-scroll" href="#page-top">
+        <i class="fa fa-play-circle"></i>  <span class="light">Start</span> trialTrak
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+      <ul class="nav navbar-nav">
+        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+        <li class="hidden">
+          <a href="#page-top"></a>
+        </li>
+        <li>
+          <a class="page-scroll" href="#about">About</a>
+        </li>
+        <li>
+          <a class="page-scroll" href="#download">Download</a>
+        </li>
+        <li>
+          <a class="page-scroll" href="#contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
 </nav>
-<ul class="hmenu">
-</ul>
-<div class="row">
-    <% if flash[:notice] %>
-        <div data-alert class="alert-box info round">
-          <%= notice %>
-          <span class="close">&times;</span>
-        </div>
-    <% end %>
-    <% if flash[:alert] %>
-        <div data-alert class="alert-box alert round">
-          <%= alert %>
-        </div>
-    <% end %>
-</div>
 
-<%= yield %>
-
-<footer class="row">
-  <div class="large-12 columns">
-    <hr>
-    <div class="row">
-      <div class="large-6 columns">
-        <p>© Copyright 2014 mediCore <%= link_to '#medicore', "https://twitter.com/aheumaier"%>.</p>
-      </div>
-      <div class="large-6 columns">
-        <ul class="inline-list right">
-          <li><%= link_to "Contact", welcome_contact_path %></li>
-          <li><%= link_to "AGB", "#" %></li>
-          <li><%= link_to "Customers","#" %></li>
-          <li><%= link_to "Blog", "#" %></li>
-        </ul>
+<!-- Intro Header -->
+<header class="intro">
+  <div class="intro-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h1 class="brand-heading">trialtrak</h1>
+          <p class="intro-text">A simple, mobile cinical trial app.<br>Created by Start Bootstrap.</p>
+          <a href="#about" class="btn btn-circle page-scroll">
+            <i class="fa fa-angle-double-down animated"></i>
+          </a>
+        </div>
       </div>
     </div>
   </div>
+</header>
+
+<!-- About Section -->
+<section id="about" class="container content-section text-center">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <h2>About trialTrak</h2>
+      <p>Speeding new treatments to market. Increasing safety. Improving the quality of life and saving lives. That’s what drives innovation in clinical research, and that's what drives the people at Nextrials. At Nextrials, we provide software tools and Electronic Health Records (EHR) integration that increases the efficiency of clinical trials by effectively capturing and communicating clinical data and project information. Prism®, our award winning EDC platform is designed by clinical experts to simultaneously boost both trial productivity and patient safety. Our EHR integration tools work with multiple EHR systems to mitigate site workload and reduce clinical trial costs. </p>
+    </div>
+  </div>
+</section>
+
+<!-- Download Section -->
+<section id="download" class="content-section text-center">
+  <div class="download-section">
+    <div class="container">
+      <div class="col-lg-8 col-lg-offset-2">
+        <h2>Download trialTrak</h2>
+        <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
+        <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="container content-section text-center">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <h2>Contact trialTrak</h2>
+      <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
+      <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
+      </p>
+      <ul class="list-inline banner-social-buttons">
+        <li>
+          <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+        </li>
+        <li>
+          <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+        </li>
+        <li>
+          <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Map Section -->
+<div id="map">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1183.8551650294135!2d9.970619941147666!3d53.59863003596141!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b188a35fead913%3A0x2adc0577c5324d69!2sOsterfeldstra%C3%9Fe+51%2C+22529+Hamburg!5e0!3m2!1sde!2sde!4v1430593252615" width="600" height="450" frameborder="0" style="border:0"></iframe>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container text-center">
+    <p>Copyright &copy; trialTrak 2014</p>
+  </div>
 </footer>
 
+<!-- jQuery -->
+<script src="/assets/jquery.js"></script>
 
-<script> $(document).foundation(); </script>
+<!-- Bootstrap Core JavaScript -->
+<script src="/assets/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="/assets/jquery.easing.min.js"></script>
+
+<!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/assets/grayscale.js"></script>
+
 </body>
+
 </html>

@@ -2,38 +2,37 @@
 <div class="row">
   <div class="large-12 columns">
 
-<p id="notice"><%= notice %></p>
-
-<% unless @organization.address.nil?  %>
-<p>
-  <strong>Street:</strong>
-  <%= @organization.address.street %>
-</p>
-<p>
-  <strong>City:</strong>
-  <%= @organization.address.city%>
-</p>
-<p>
-  <strong>PLZ:</strong>
-  <%= @organization.address.city_code %>
-</p>
-<p>
-  <strong>Country:</strong>
-  <%= @organization.address.country %>
-</p>
-<% end %>
-
-<p>
-  <strong>Trials:</strong><br>
-    <% @organization_trials.each do |trial| %>
-      <%= link_to trial.name, trial_path(trial.id) %>: <%= trial.summary %> <br>
+    <% unless @organization.address.nil?  %>
+      <p>
+        <strong>Street:</strong>
+        <%= @organization.address.street %>
+      </p>
+      <p>
+        <strong>City:</strong>
+        <%= @organization.address.city%>
+      </p>
+      <p>
+        <strong>PLZ:</strong>
+        <%= @organization.address.city_code %>
+      </p>
+      <p>
+        <strong>Country:</strong>
+        <%= @organization.address.country %>
+      </p>
     <% end %>
-</p>
 
+    <p>
+      <strong>Trials:</strong><br>
+      <% @organization_trials.each do |trial| %>
+        <%= link_to trial.name, trial_path(trial.id) %>: <%= trial.summary %> <br>
+      <% end %>
+    </p>
 
-<%= link_to 'Edit', edit_organization_path(@organization) %>
-<%= link_to 'Back', organizations_path %>
+    <div class="actions">
+      <%= button_tag( "Edit", :type => :button, :class => "button", :onclick => "document.location.href='#{edit_organization_path(@organization)}'" )%>
+      <%= button_tag( "Back", :type => :button, :class => "button", :onclick => "document.location.href='#{organizations_path}'" )%>
+    </div>
 
-</div>
+  </div>
 </div>
 </p>

@@ -3,6 +3,10 @@ module ApplicationHelper
     user.address ||= Address.new
     user
   end
+  def setup_organization(organization)
+    organization.address ||= Address.new
+    organization
+  end
 
   def save_or_update_button(entity)
     entity.id ? "Speichern" : "Hinzuf&uuml;gen".html_safe
