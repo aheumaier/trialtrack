@@ -5,6 +5,8 @@ class RolesController < ApplicationController
   # GET /roles
   # GET /roles.json
   def index
+    @user = @user || current_user
+    @role = @role || @user.role.load
     @roles = Role.all
   end
 

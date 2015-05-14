@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.accessible_by(current_ability).load
+    @users = User.accessible_by(current_ability).load.includes(:role).includes(:organization)
   end
 
   # GET /users/1
@@ -18,19 +18,20 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @roles = Role.all
+    @roles = Role.all.load
     @organizations = Organization.all.load
   end
 
   # GET /users/1/edit
   def edit
-    @roles = Role.all
-    @organizations = Organization.all.load
+    @roles = Role.all.load.includes(:users)
+    @organizations = Organization.all.load.includes(:users).includes(:address)
   end
 
   # POST /users
   # POST /users.json
   def create
+
     @user = User.new(user_params)
 
     respond_to do |format|

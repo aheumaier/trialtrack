@@ -6,7 +6,7 @@ class TrialsController < ApplicationController
   # GET /trials
   # GET /trials.json
   def index
-    @trials = Trial.accessible_by(current_ability)
+    @trials = Trial.accessible_by(current_ability).includes(:organization)
   end
 
   # GET /trials/1
@@ -18,6 +18,7 @@ class TrialsController < ApplicationController
   def new
     @trial = Trial.new
     @questions = Question.all.load
+    @my_questions = @trial.questions.all.load
     @organizations = Organization.accessible_by(current_ability).load
   end
 

@@ -3,118 +3,118 @@
    end %>
 
 <%= form_for(@trial) do |f| %>
-    <% if @trial.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@trial.errors.count, "error") %> prohibited this trial from being saved:</h2>
+  <% if @trial.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trial.errors.count, "error") %> prohibited this trial from being saved:</h2>
 
-          <ul>
-            <% @trial.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+      <ul>
+        <% @trial.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-    <div class="field">
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
-    </div>
-    <div class="field">
-      <%= f.label :description %><br>
-      <%= f.text_area :description %>
-    </div>
-    <div class="field">
-      <%= f.label :summary %><br>
-      <%= f.text_field :summary %>
-    </div>
-    <div class="field">
-      <%= f.label :organization %><br>
-      <%= collection_select(:trial, :organization_id, @organizations, :id, :name)  %>
-    </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :summary %><br>
+    <%= f.text_field :summary %>
+  </div>
+  <div class="field">
+    <%= f.label :organization %><br>
+    <%= collection_select(:trial, :organization_id, @organizations, :id, :name)  %>
+  </div>
 
-   <fieldset>
+  <fieldset>
 
     <div class="field" id="questions">
       <%= f.label :questions %><br>
 
       <% for question in @my_questions
       %>
-          <div id="question_<%=question.id %>" class="clearfix" style="margin-bottom: 5px;line-height: 25px">
-            <%= delete_button(question) %>
-            <span style="font-size: 16px"><%= question.question %></span>
-          </div>
+        <div id="question_<%=question.id %>" class="clearfix" style="margin-bottom: 5px;line-height: 25px">
+          <%= delete_button(question) %>
+          <span style="font-size: 16px"><%= question.question %></span>
+        </div>
       <% end %>
 
     </div>
 
-     <label>Frage hinzuf&uuml;gen</label>
-     <div style="width:auto;text-align: left;vertical-align: middle;line-height: 50px;float:left;width:80%">
-       <%=
-           select_tag 'question_select', options_from_collection_for_select(@questions, 'id', 'question'), :style => "width:100%"
-       %>
-     </div>
-     <div style="width:auto;text-align: right"><input type="button" class="button" value="Hinzuf&uuml;gen" onclick="addQuestion()"></div>
+    <label>Frage hinzuf&uuml;gen</label>
+    <div style="width:auto;text-align: left;vertical-align: middle;line-height: 50px;float:left;width:80%">
+      <%=
+          select_tag 'question_select', options_from_collection_for_select(@questions, 'id', 'question'), :style => "width:100%"
+      %>
+    </div>
+    <div style="width:auto;text-align: right"><input type="button" class="button" value="Hinzuf&uuml;gen" onclick="addQuestion()"></div>
 
-   </fieldset>
+  </fieldset>
 
-    <%= f.submit save_or_update_button(@trial), :class => "button"%>
-    <%= cancel_button() %>
+  <%= f.submit save_or_update_button(@trial), :class => "button"%>
+  <%= cancel_button() %>
 <% end %>
 
 
 <script>
 
-      var questions = [];
+  var questions = [];
 
-      <%
-         Question.all.each_with_index do |question, idx|
-      %>
-            <%= ("questions.push([#{question.id}, '" + question.question + "']);\n").html_safe; %>
-      <% end %>
-      function addQuestion() {
+  <%
+     Question.all.each_with_index do |question, idx|
+  %>
+  <%= ("questions.push([#{question.id}, '" + question.question + "']);\n").html_safe; %>
+  <% end %>
 
-          $(questions).each(function(idx, el) {
-              console.log(el[0]);
-              if (el[0] == $("#question_select").val()) {
-                  var id = el[0];
-                  var name = el[1];
-                  $("#questions").append('<div id="question_' + new String(id) + '" class="clearfix" style="margin-bottom: 5px;line-height: 25px"><div style="width:25px;height:25px;color:white;background-color:#600000;float:left;text-align:center;vertical-align:middle;line-height:25px;margin-right:5px;cursor:pointer" class="rounded" onclick="removeQuestion(' + id + ', \'' + name + '\')">&times</div><span style="font-size: 16px">' + name + '</span></div><input type="hidden" name="trial[question_ids][]" value="' + id + '">');
+  function addQuestion() {
+    $(questions).each(function(idx, el) {
+      console.log(el[0]);
+      if (el[0] == $("#question_select").val()) {
+        var id = el[0];
+        var name = el[1];
+        $("#questions").append('<div id="question_' + new String(id) + '" class="clearfix" style="margin-bottom: 5px;line-height: 25px"><div style="width:25px;height:25px;color:white;background-color:#600000;float:left;text-align:center;vertical-align:middle;line-height:25px;margin-right:5px;cursor:pointer" class="rounded" onclick="removeQuestion(' + id + ', \'' + name + '\')">&times</div><span style="font-size: 16px">' + name + '</span></div><input type="hidden" name="trial[question_ids][]" value="' + id + '">');
 //          $('#question_' + new String(id)).animate({backgroundColor:'#1010a0'}, 300, "linear", function () {
 //              $('#question_' + new String(id)).animate({backgroundColor:'#1010a0'}, 300, "linear", function () {
 //
 //              });
 //          });
-                  $("#question_select > option").each(function() {
-                      if (this.value == id) {
-                          $('#question_select option[value="' + id + '"]').remove();
-                      }
-                  });
-                  return false;
-              }
-          });
+        $("#question_select > option").each(function() {
+          if (this.value == id) {
+            $('#question_select option[value="' + id + '"]').remove();
+          }
+        });
+        return false;
       }
+    });
+  }
 
-      function removeQuestion(id, name) {
-          $("#question_" + new String(id)).remove();
-          $($("#question_select > option").get().reverse()).each(function(idx, el) {
-              console.log(this.value + " " + idx);
-              if (this.value < id || idx == $("#question_select > option").length-1) {
-                  if (idx == $("#question_select > option").length-1 && !(this.value < id)) {
-                      $('<option value="' + id + '">' + name + '</option>').insertBefore(this);
-                  } else {
-                      $('<option value="' + id + '">' + name + '</option>').insertAfter(this);
-                  }
-                  return false;
-              }
-          });
+  function removeQuestion(id, name) {
+    $("#question_" + new String(id)).remove();
+    $($("#question_select > option").get().reverse()).each(function(idx, el) {
+      console.log(this.value + " " + idx);
+      if (this.value < id || idx == $("#question_select > option").length-1) {
+        if (idx == $("#question_select > option").length-1 && !(this.value < id)) {
+          $('<option value="' + id + '">' + name + '</option>').insertBefore(this);
+        } else {
+          $('<option value="' + id + '">' + name + '</option>').insertAfter(this);
+        }
+        return false;
       }
+    });
+  }
 
 
 
-//      7 12
-//
-//
-//      99
+  //      7 12
+  //
+  //
+  //      99
 
 
 

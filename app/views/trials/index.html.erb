@@ -11,17 +11,15 @@
         <th>Summary</th>
         <th></th>
         <th></th>
-        <th></th>
       </tr>
       </thead>
 
-      <tbody>
+      <tbody style="border-collapse: collapse">
       <% @trials.each do |trial| %>
-          <tr>
-            <td><%= trial.id %></td>
-            <td><%= trial.name %></td>
-            <td><%= trial.summary %></td>
-            <td><%= link_to 'Show', trial %></td>
+          <tr class="showrow">
+            <td onclick="document.location.href='/trials/<%=trial.id%>'">  <%= trial.id %></td>
+            <td onclick="document.location.href='/trials/<%=trial.id%>'">  <%= trial.name %></td>
+            <td onclick="document.location.href='/trials/<%=trial.id%>'">  <%= trial.summary %></td>
             <td><%= link_to 'Edit', edit_trial_path(trial) %></td>
             <td><%= link_to 'Destroy', trial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
